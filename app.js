@@ -26,36 +26,38 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(bodyParser.json());
 
 //Login
-const LoginRouter = require('./routes/LoginRoutes');
+// const LoginRouter = require('./routes/LoginRoutes');
 
 
 //pharma
-const createPurchaseOrderRoutes = require('./routes/createPurchaseOrderRoutes');
-const inventoryroutes = require('./routes/inventoryRoutes');
-const invoicestockRoutes = require('./routes/invoicestockRoutes');
-const pharmaBillingRoutes = require('./routes/pharmacyBillingRoutes');
-const pharmacystockRoutes = require('./routes/pharmacystockRoutes');
-const stockAdjustmentRoutes = require('./routes/stockAdjustmentRoutes');
-const stockinvoiceRoutes = require('./routes/pharmacyBillingRoutes');
-const stockistRoutes = require("./routes/stockistRoutes");
-const billRoutes = require('./routes/PatientBillRoutes');
+// const createPurchaseOrderRoutes = require('./routes/createPurchaseOrderRoutes');
+// const inventoryroutes = require('./routes/inventoryRoutes');
+// const invoicestockRoutes = require('./routes/invoicestockRoutes');
+// const pharmaBillingRoutes = require('./routes/pharmacyBillingRoutes');
+// const pharmacystockRoutes = require('./routes/pharmacystockRoutes');
+// const stockAdjustmentRoutes = require('./routes/stockAdjustmentRoutes');
+// const stockinvoiceRoutes = require('./routes/pharmacyBillingRoutes');
+// const stockistRoutes = require("./routes/stockistRoutes");
+// const billRoutes = require('./routes/PatientBillRoutes');
+const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 
 
 app.use(express.json());
 
 //Login
-app.use('/api', LoginRouter);
+// app.use('/api', LoginRouter);
 
 //pharma
-app.use('/api', createPurchaseOrderRoutes);
-app.use('/api', inventoryroutes);
-app.use('/api', invoicestockRoutes);
-app.use('/api', pharmaBillingRoutes);
-app.use('/api', pharmacystockRoutes);
-app.use('/api', stockAdjustmentRoutes);
-app.use('/api', stockinvoiceRoutes);
-app.use("/api", stockistRoutes);
-app.use('/api', billRoutes);
+// app.use('/api', createPurchaseOrderRoutes);
+// app.use('/api', inventoryroutes);
+// app.use('/api', invoicestockRoutes);
+// app.use('/api', pharmaBillingRoutes);
+// app.use('/api', pharmacystockRoutes);
+// app.use('/api', stockAdjustmentRoutes);
+// app.use('/api', stockinvoiceRoutes);
+// app.use("/api", stockistRoutes);
+// app.use('/api', billRoutes);
+app.use('/api', DrugmasterRoutes);
 
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
