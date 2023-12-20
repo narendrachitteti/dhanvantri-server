@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 // const stockistRoutes = require("./routes/stockistRoutes");
 // const billRoutes = require('./routes/PatientBillRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
-
+const formDataRoutes = require('./routes/formDataRoutes');
 
 app.use(express.json());
 
@@ -58,7 +58,7 @@ app.use(express.json());
 // app.use("/api", stockistRoutes);
 // app.use('/api', billRoutes);
 app.use('/api', DrugmasterRoutes);
-
+app.use('/', formDataRoutes);
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
 app.listen(PORT, () => {
