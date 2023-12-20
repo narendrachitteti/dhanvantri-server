@@ -1,12 +1,11 @@
 //invoicestockController
 
-
 const CombinedInvoice = require("../models/invoicestockModel");
 
 const addInvoice = async (req, res) => {
   try {
     const newInvoice = new CombinedInvoice(req.body);
-    await newInvoice.save();  
+    await newInvoice.save();
     res.status(201).json(newInvoice);
   } catch (error) {
     console.error(error);
@@ -45,6 +44,10 @@ const updateInvoice = async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 };
+
+
+
+
 const getMedicineOnly = async (req, res) => {
   try {
     // Logic to fetch all medicines from the database
@@ -56,23 +59,70 @@ const getMedicineOnly = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching medicines.' });
   }
 };
-const getHSNCode = async (req, res) => {
+
+const getMedicineDetails = async (req, res) => {
   const { medicineName } = req.params;
 
   try {
-    // Fetch the HSN code for the selected medicine from your database
-    const HSNcode = await CombinedInvoice.findOne({ "medicines.Medicine": medicineName }, 'HSNcode');
-  
-    if (!HSNcode) {
-      return res.status(404).json({ error: 'HSN code not found for the selected medicine' });
+    const medicineDetails = await CombinedInvoice.findOne({ "medicines.Medicine": medicineName });
+    
+    if (!medicineDetails) {
+      return res.status(404).json({ error: "Medicine details not found" });
     }
 
-    res.status(200).json({ HSNcode });
+    const selectedMedicine = medicineDetails.medicines.find(medicine => medicine.Medicine === medicineName);
+    const { HSNcode, price, Manufacturer, Gst } = selectedMedicine;
+
+    res.status(200).json({ HSNcode, price, Manufacturer, Gst });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: `Failed to fetch HSN code: ${error.message}` });
+    res.status(500).json({ error: `Failed to fetch medicine details: ${error.message}` });
   }
 };
+
+
+
+const getBatchNumbers = async (req, res) => {
+  try {
+    const invoices = await CombinedInvoice.find({}, 'medicines.Batch');
+    const batchNumbers = invoices.flatMap(invoice => invoice.medicines.map(medicine => medicine.Batch));
+    const uniqueBatchNumbers = [...new Set(batchNumbers)]; // Get unique batch numbers
+
+    res.status(200).json({ batchNumbers: uniqueBatchNumbers });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching batch numbers.' });
+  }
+};
+
+const getBatchDetails = async (req, res) => {
+  const { batchNumber } = req.params;
+
+  try {
+    const medicineDetails = await CombinedInvoice.findOne({ "medicines.Batch": batchNumber });
+    
+    if (!medicineDetails) {
+      return res.status(404).json({ error: "Medicine details not found" });
+    }
+
+    const selectedMedicine = medicineDetails.medicines.find(medicine => medicine.Batch === batchNumber);
+    if (!selectedMedicine) {
+      return res.status(404).json({ error: "Medicine details not found for the specified batch" });
+    }
+
+    const { BatchExpiry } = selectedMedicine;
+
+    res.status(200).json({ BatchExpiry });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: `Failed to fetch batch details: ${error.message}` });
+  }
+};
+
+
+
+
+
 
 
 
@@ -144,42 +194,42 @@ const updateMedicineQuantity = async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 };
-const getMedicineDetails = async (req, res) => {
-  const { medicineName } = req.params;
+// const getMedicineDetails = async (req, res) => {
+//   const { medicineName } = req.params;
 
-  try {
-    const medicineDetails = await CombinedInvoice.aggregate([
-      {
-        $unwind: "$medicines",
-      },
-      {
-        $match: {
-          "medicines.Medicine": medicineName,
-        },
-      },
-      {
-        $project: {
-          _id: 0, // Exclude _id field from the result
-          Medicine: "$medicines.Medicine",
-          Price: "$medicines.price",
-          Quantity: "$medicines.Quantity",
-          Total: "$medicines.Total",
-          Amount: "$medicines.amount",
-          // Add other fields you want to include in the response
-        },
-      },
-    ]);
+//   try {
+//     const medicineDetails = await CombinedInvoice.aggregate([
+//       {
+//         $unwind: "$medicines",
+//       },
+//       {
+//         $match: {
+//           "medicines.Medicine": medicineName,
+//         },
+//       },
+//       {
+//         $project: {
+//           _id: 0, // Exclude _id field from the result
+//           Medicine: "$medicines.Medicine",
+//           Price: "$medicines.price",
+//           Quantity: "$medicines.Quantity",
+//           Total: "$medicines.Total",
+//           Amount: "$medicines.amount",
+//           // Add other fields you want to include in the response
+//         },
+//       },
+//     ]);
 
-    if (medicineDetails.length === 0) {
-      return res.status(404).json({ error: "Medicine details not found" });
-    }
+//     if (medicineDetails.length === 0) {
+//       return res.status(404).json({ error: "Medicine details not found" });
+//     }
 
-    res.status(200).json(medicineDetails[0]);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: `Failed to fetch medicine details: ${error.message}` });
-  }
-};
+//     res.status(200).json(medicineDetails[0]);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: `Failed to fetch medicine details: ${error.message}` });
+//   }
+// };
 
 // Add this function to handle updating pharmacy quantity
 const updatePharmaQuantity = async (req, res) => {
@@ -204,8 +254,75 @@ const updatePharmaQuantity = async (req, res) => {
 
 
 
+
+// Function to get invoice numbers
+const getInvoiceNumbers = async (req, res) => {
+  try {
+    // Fetch all invoices from the database
+    const invoices = await CombinedInvoice.find({}, 'invoiceNumber');
+
+    const invoiceNumbers = invoices.map(invoice => invoice.invoiceNumber);
+
+    res.status(200).json({ invoiceNumbers });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching invoice numbers.' });
+  }
+};
+
+// Other controller functions...
+
+const getInvoiceDetails = async (req, res) => {
+  const { selectedInvoice } = req.params;
+
+  try {
+    const invoiceDetails = await CombinedInvoice.findOne({ invoiceNumber: selectedInvoice });
+
+    if (!invoiceDetails) {
+      return res.status(404).json({ error: "Invoice details not found" });
+    }
+
+    // Extract the fields you want to send to the frontend
+    const tableFields = invoiceDetails.medicines.map((medicine) => ({
+      Medicine: medicine.Medicine,
+      Quantity: medicine.Quantity,
+      Price: medicine.price,
+      Manufacturer: medicine.Manufacturer,
+      Batch: medicine.Batch,
+      BatchExpiry: medicine.BatchExpiry,
+      GST: medicine.Gst,
+      // Add more fields if needed
+    }));
+
+    res.status(200).json({ tableFields });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: `Failed to fetch invoice details: ${error.message}` });
+  }
+};
+
+const getMedicineDetailss = async (req, res) => {
+  const { medicineName } = req.params;
+
+  try {
+    const medicineDetails = await CombinedInvoice.findOne({ "medicines.Medicine": medicineName });
+    
+    if (!medicineDetails) {
+      return res.status(404).json({ error: "Medicine details not found" });
+    }
+
+    const selectedMedicine = medicineDetails.medicines.find(medicine => medicine.Medicine === medicineName);
+    const { price, Manufacturer, Batch, BatchExpiry, Gst } = selectedMedicine;
+
+    res.status(200).json({ price, Manufacturer, Batch, BatchExpiry, Gst });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: `Failed to fetch medicine details: ${error.message}` });
+  }
+};
+
+
 module.exports = {
-  getHSNCode,
   addInvoice,
   getInvoices,
   updateInvoice,
@@ -215,4 +332,10 @@ module.exports = {
   getMedicineDetails,
   updatePharmaQuantity,
   getMedicineOnly,
+  getInvoiceNumbers,
+  getInvoiceDetails,
+  getMedicineDetailss,
+  getBatchNumbers,
+  getBatchDetails,
+   // Export the getInvoiceNumbers function
 };
