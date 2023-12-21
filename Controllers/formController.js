@@ -22,6 +22,19 @@ exports.readAllDocuments = async (req, res) => {
 };
 
 exports.updateDocument = async (req, res) => {
+async function getProducts(req, res) {
+  try {
+    // Fetch all products from the database
+    const products = await FormDatas.find({}, 'product'); // Fetching only the 'product' field
+
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+async function updateFormData(req, res) {
   try {
     const document = await Fordata.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(document);
@@ -54,5 +67,17 @@ exports.getDistinct = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  };
-  
+
+    res.json(updatedData);
+  } catch (error) {
+    console.error('Error updating data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = {
+  createFormData,
+  getFormData,
+  updateFormData,
+  getProducts,
+};

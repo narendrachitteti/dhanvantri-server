@@ -42,14 +42,9 @@ const invoicestockRoutes = require('./routes/invoicestockRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
-const patientbill = require('./routes/PatientBillRoutes');
+// const patientbill = require('./routes/PatientBillRoutes');
 const formRoutes = require('./routes/formRoutes');
-const taxRoutes = require('./routes/taxRoutes');
-
-
-
-app.use('/api', taxRoutes);
-app.use('/api',patientbill);
+// app.use('/api',patientbill);
 app.use('/',formRoutes);
 app.use(express.json());
 
@@ -67,7 +62,7 @@ app.use('/api', invoicestockRoutes);
 // app.use("/api", stockistRoutes);
 // app.use('/api', billRoutes);
 app.use('/api', DrugmasterRoutes);
-app.use('/', formDataRoutes);
+app.use('/api', formDataRoutes);
 app.use('/api', employeeRoutes);
 // stockist 
 const stockistRoutes = require('./routes/StockistRoutes');
