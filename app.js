@@ -133,6 +133,13 @@ app.use('/api', employeeRoutes);
 app.use('/',formRoutes);
 
 
+
+
+// Stockist
+const stockistRoutes = require('./routes/StockistRoutes');
+app.use('/api', stockistRoutes);
+
+
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

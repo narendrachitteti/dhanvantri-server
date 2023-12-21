@@ -1,9 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const stockistController = require("../controllers/stockistController");
+// routes/StockistRoutes.js
+const express = require('express');
+const stockistController = require('../Controllers/StockistController');
 
-router.get("/stockists", stockistController.getAllStockists);
-router.post("/stockists", stockistController.addStockist);
-router.put("/stockists/:id", stockistController.updateStockist);
+const router = express.Router();
+
+router.post('/submit-stockist', stockistController.submitStockist);
+router.get('/get-stockists', stockistController.getStockists);
+router.put('/update-stockist/:id', stockistController.updateStockist);
+
 
 module.exports = router;
