@@ -1,10 +1,11 @@
 // controllers/formDataController.js
-const FormDatas = require('../models/formDataModel');
+const mongoose = require('mongoose');
+const Fordata = require('../models/formDataModel');
 
 async function createFormData(req, res) {
   try {
     const formData = req.body;
-    const savedData = await FormDatas.create(formData);
+    const savedData = await Fordata.create(formData);
     res.json(savedData);
   } catch (error) {
     console.error('Error saving data:', error);
@@ -14,7 +15,7 @@ async function createFormData(req, res) {
 
 async function getFormData(req, res) {
   try {
-    const fetchedData = await FormDatas.find();
+    const fetchedData = await Fordata.find();
     res.json(fetchedData);
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -27,13 +28,14 @@ async function updateFormData(req, res) {
     const { id } = req.params;
     const formData = req.body;
 
+ 
     // Validate if the provided ID is valid
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: 'Invalid ID' });
-    }
-
+if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid ID' });
+  }
+  
     // Update the data in the database
-    const updatedData = await FormDatas.findByIdAndUpdate(id, formData, { new: true });
+const updatedData = await Fordata.findByIdAndUpdate(id, formData, { new: true });
 
     // Check if the data was found and updated
     if (!updatedData) {
