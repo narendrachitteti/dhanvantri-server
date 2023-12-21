@@ -30,6 +30,16 @@ const patientBillController = {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   },
+
+  getAllPatientBills: async (_req, res) => {
+    try {
+      const patientBills = await PatientBill.find();
+      res.json(patientBills);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server Error');
+    }
+  },
 };
 
 module.exports = patientBillController;
