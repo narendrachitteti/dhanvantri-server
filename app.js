@@ -107,6 +107,7 @@ const LoginRouter = require('./routes/LoginRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
+const formRoutes = require('./routes/formRoutes')
 
 app.use(express.json());
 
@@ -129,6 +130,8 @@ app.use('/api', LoginRouter);
 app.use('/api', DrugmasterRoutes);
 app.use('/', formDataRoutes);
 app.use('/api', employeeRoutes);
+app.use('/',formRoutes);
+
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
 app.listen(PORT, () => {
