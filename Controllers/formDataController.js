@@ -54,20 +54,16 @@ const formDataController = {
 
   getDistinctCompanies: async (req, res) => {
     try {
-      const distinctCompanies = await FormData.distinct('company');
       const distinctTaxCodes = await FormData.distinct('taxCode');
       const distinctCatarogy = await FormData.distinct('category');
       const distinctgroup = await FormData.distinct('group');
       const distinctschedule = await FormData.distinct('schedule');
-      const distincthsn = await FormData.distinct('hsn');
       const distinctdrugComposition = await FormData.distinct('drugComposition');
       const distinctValues = {
-        companies: distinctCompanies,
         taxCodes: distinctTaxCodes,
         category: distinctCatarogy,
         group:distinctgroup,
         schedule:distinctschedule,
-        hsn:distincthsn,
         drugComposition:distinctdrugComposition,
       };
 
@@ -77,6 +73,7 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
 },
+
   
 };
 
