@@ -13,6 +13,7 @@ const CreatePurchaseOrderSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    
   },
   stockistName: String,
   date: String,

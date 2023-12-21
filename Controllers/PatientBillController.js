@@ -1,73 +1,35 @@
-// const Bill = require('../models/PatientBill');
+// controllers/PatientBillController.js
+const PatientBill = require('../models/PatientBillModel');
 
-// const saveBillData = async (req, res) => {
-//   try {
-//     const {
-//       patientName,
-//       invoiceNo,
-//       selectedDoctor,
-//       date,
-//       pharmaSign,
-//       items,
-//       subtotalWithGST,
-//       subtotalWithoutGST,
-//     } = req.body;
+const patientBillController = {
+  submitPatientBill: async (req, res) => {
+    try {
+      const {
+        patientName,
+        mobilenumber,
+        date,
+        items,
+        subtotalWithGST,
+        subtotalWithoutGST,
+      } = req.body;
 
-//     const newBill = new Bill({
-//       patientName,
-//       invoiceNo,
-//       doctorName: selectedDoctor,
-//       date,
-//       pharmaSign,
-//       items,
-//       subtotalWithGST,
-//       subtotalWithoutGST,
-//     });
+      const newPatientBill = new PatientBill({
+        patientName,
+        mobilenumber,
+        date,
+        items,
+        subtotalWithGST,
+        subtotalWithoutGST,
+      });
 
-//     await newBill.save();
+      await newPatientBill.save();
 
-//     res.json({ success: true, message: 'Bill data saved successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: 'Internal Server Error' });
-//   }
-// };
-
-// module.exports = { saveBillData };
-
-const Bill = require('../models/PatientBill');
-
-const saveBillData = async (req, res) => {
-  try {
-    const {
-      patientName,
-      invoiceNo,
-      selectedDoctor,
-      date,
-      pharmaSign,
-      items,
-      subtotalWithGST,
-      subtotalWithoutGST,
-    } = req.body;
-
-    const newBill = new Bill({
-      patientName,
-      invoiceNo,
-      doctorName: selectedDoctor,
-      date,
-      pharmaSign,
-      items,
-      subtotalWithGST,
-      subtotalWithoutGST,
-    });
-
-    await newBill.save();
-
-    res.json({ success: true, message: 'Bill data saved successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
-  }
+      res.status(201).json({ message: 'PatientBill submitted successfully' });
+    } catch (error) {
+      console.error('Error submitting PatientBill:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  },
 };
 
-module.exports = { saveBillData };
+module.exports = patientBillController;

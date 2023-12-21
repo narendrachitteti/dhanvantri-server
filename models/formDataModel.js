@@ -1,12 +1,12 @@
 // models/formDataModel.js
 const mongoose = require('mongoose');
 
-const formDataSchema = new mongoose.Schema({
-  input1: String,
-  input2: String,
-  input3: String,
+const formdataSchema = new mongoose.Schema({
+  company: String,
+  hsncode: String,
+//   input3: String,
 });
 
-const FormDatas = mongoose.model('shyam', formDataSchema);
+const Fordata = mongoose.model('Formdataass', formdataSchema);
 
-module.exports = FormDatas;
+module.exports = Fordata;
