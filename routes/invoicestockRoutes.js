@@ -14,7 +14,7 @@ const {
   getMedicineDetails,
   getMedicineOnly, 
   updatePharmaQuantity,
-} = require("../Controllers/invoicestockController");
+} = require("../controllers/invoicestockController");
 
 // Add Invoice
 router.post("/addInvoice", addInvoice);
