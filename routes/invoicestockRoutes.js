@@ -25,6 +25,7 @@ router.get("/getInvoices", getInvoices);
 router.get("/medicines", getMedicineOnly); 
 
 router.get("/medicines/${selectedMedicine}/hsn", getHSNCode);
+router.get(`/medicines/:selectedMedicine/hsn`, getHSNCode);
 
 // Update Invoice
 router.put("/updateInvoice/:invoiceId", updateInvoice);
