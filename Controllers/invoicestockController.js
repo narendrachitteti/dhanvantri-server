@@ -3,6 +3,7 @@
 
 const CombinedInvoice = require("../models/invoicestockModel");
 
+
 const addInvoice = async (req, res) => {
   try {
     const newInvoice = new CombinedInvoice(req.body);

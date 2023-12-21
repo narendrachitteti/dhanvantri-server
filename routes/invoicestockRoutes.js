@@ -4,7 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getHSNCode,
+
   addInvoice,
   getInvoices,
   updateInvoice,
@@ -14,7 +14,7 @@ const {
   getMedicineDetails,
   getMedicineOnly, 
   updatePharmaQuantity,
-} = require("../controllers/DrugMasterController");
+} = require("../Controllers/invoicestockController"); 
 
 // Add Invoice
 router.post("/addInvoice", addInvoice);
@@ -24,8 +24,8 @@ router.get("/getInvoices", getInvoices);
 
 router.get("/medicines", getMedicineOnly); 
 
-router.get("/medicines/${selectedMedicine}/hsn", getHSNCode);
-router.get(`/medicines/:selectedMedicine/hsn`, getHSNCode);
+// router.get("/medicines/${selectedMedicine}/hsn", getHSNCode);
+// router.get(`/medicines/:selectedMedicine/hsn`, getHSNCode);
 
 // Update Invoice
 router.put("/updateInvoice/:invoiceId", updateInvoice);
