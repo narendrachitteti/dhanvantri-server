@@ -11,34 +11,7 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
   },
-  getProducts: async (req, res) => { 
-    try {
-      const products = await FormData.find({}, 'product');
-      res.json(products);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  },
-  getSalesRates: async (req, res) => {
-    try {
-      const salesRates = await FormData.find({}, 'salesRate');
-      res.json(salesRates);
-    } catch (error) {
-      console.error('Error fetching salesRates:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  },
 
-  getPurchaseRates: async (req, res) => {
-    try {
-      const purchaseRates = await FormData.find({}, 'purchaseRate');
-      res.json(purchaseRates);
-    } catch (error) {
-      console.error('Error fetching purchaseRates:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  },
   getAllData: async (req, res) => {
     try {
       const allData = await FormData.find();
@@ -81,20 +54,16 @@ const formDataController = {
 
   getDistinctCompanies: async (req, res) => {
     try {
-      const distinctCompanies = await FormData.distinct('company');
       const distinctTaxCodes = await FormData.distinct('taxCode');
       const distinctCatarogy = await FormData.distinct('category');
       const distinctgroup = await FormData.distinct('group');
       const distinctschedule = await FormData.distinct('schedule');
-      const distincthsn = await FormData.distinct('hsn');
       const distinctdrugComposition = await FormData.distinct('drugComposition');
       const distinctValues = {
-        companies: distinctCompanies,
         taxCodes: distinctTaxCodes,
         category: distinctCatarogy,
         group:distinctgroup,
         schedule:distinctschedule,
-        hsn:distincthsn,
         drugComposition:distinctdrugComposition,
       };
 
@@ -104,6 +73,7 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
 },
+
   
 };
 

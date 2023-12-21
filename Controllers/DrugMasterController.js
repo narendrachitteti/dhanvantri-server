@@ -54,3 +54,19 @@ exports.deleteDrugCompo = async (req, res) => {
         res.status(400).json({ error: 'Error deleting lab service' });
     }
 };
+
+
+exports.getDistinct = async (req, res) => {
+    try {
+        
+      const distinctdrugComposition = await DrugCompo.distinct('DrugCompoId');
+      const distinctValues = {
+        drugComposition:distinctdrugComposition,
+      };
+  
+      res.json(distinctValues);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
