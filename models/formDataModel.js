@@ -7,6 +7,6 @@ const formDataSchema = new mongoose.Schema({
   input3: String,
 });
 
-const FormDatas = mongoose.model('FormDatas', formDataSchema);
+const FormDatas = mongoose.model('shyam', formDataSchema);
 
-module.exports = FormData;
+module.exports = FormDatas;
