@@ -42,9 +42,9 @@ const invoicestockRoutes = require('./routes/invoicestockRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
-const patientbill = require('./routes/PatientBillRoutes');
+// const patientbill = require('./routes/PatientBillRoutes');
 const formRoutes = require('./routes/formRoutes');
-app.use('/api',patientbill);
+// app.use('/api',patientbill);
 app.use('/',formRoutes);
 app.use(express.json());
 
