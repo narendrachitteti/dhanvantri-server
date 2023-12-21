@@ -46,6 +46,6 @@ const combinedSchema = new mongoose.Schema({
   ReturnStatus: String,
 });
 
-const CombinedInvoice = mongoose.model('CombinedInvoice', combinedSchema);
+const CombinedInvoice = mongoose.model("CombinedInvoice", combinedSchema);
 
 module.exports = CombinedInvoice;

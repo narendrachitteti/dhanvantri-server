@@ -61,6 +61,10 @@ app.use('/api', invoicestockRoutes);
 app.use('/api', DrugmasterRoutes);
 app.use('/', formDataRoutes);
 app.use('/api', employeeRoutes);
+// stockist 
+const stockistRoutes = require('./routes/StockistRoutes');
+app.use('/api', stockistRoutes);
+
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
 app.listen(PORT, () => {
