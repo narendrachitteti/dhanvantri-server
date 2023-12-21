@@ -22,6 +22,18 @@ async function getFormData(req, res) {
   }
 }
 
+async function getProducts(req, res) {
+  try {
+    // Fetch all products from the database
+    const products = await FormDatas.find({}, 'product'); // Fetching only the 'product' field
+
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
 async function updateFormData(req, res) {
   try {
     const { id } = req.params;
@@ -51,4 +63,5 @@ module.exports = {
   createFormData,
   getFormData,
   updateFormData,
+  getProducts,
 };
