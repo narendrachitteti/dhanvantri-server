@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DrugCompoController = require('../Controllers/DrugMasterController');
+const DrugCompoController = require('../controllers/DrugMasterController');
 
 // Define routes for lab service CRUD operations
 router.get('/Drug-composition/', DrugCompoController.getAllDrugCompos);
