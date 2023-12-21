@@ -42,6 +42,9 @@ const invoicestockRoutes = require('./routes/invoicestockRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
+const patientbill = require('./routes/PatientBillRoutes');
+const formRoutes = require('./routes/formRoutes');
+
 
 app.use(express.json());
 
@@ -61,6 +64,12 @@ app.use('/api', invoicestockRoutes);
 app.use('/api', DrugmasterRoutes);
 app.use('/', formDataRoutes);
 app.use('/api', employeeRoutes);
+app.use('/api', patientbill)
+app.use('/',formRoutes)
+// Stockist
+const stockistRoutes = require('./routes/StockistRoutes');
+app.use('/api', stockistRoutes);
+
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
 app.listen(PORT, () => {
