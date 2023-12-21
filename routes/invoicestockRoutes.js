@@ -45,5 +45,4 @@ router.get("/medicineDetails/:medicineName", getMedicineDetails);
 router.put("/updatePharmaQuantity/:medicineName", updatePharmaQuantity);
 
 
-
 module.exports = router;

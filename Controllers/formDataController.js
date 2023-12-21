@@ -11,7 +11,24 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
   },
-
+  getProducts: async (req, res) => { 
+    try {
+      const products = await FormData.find({}, 'product');
+      res.json(products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  getSalesRates: async (req, res) => {
+    try {
+      const salesRates = await FormData.find({}, 'salesRate');
+      res.json(salesRates);
+    } catch (error) {
+      console.error('Error fetching salesRates:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
   getAllData: async (req, res) => {
     try {
       const allData = await FormData.find();

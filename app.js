@@ -62,7 +62,7 @@ app.use('/api', invoicestockRoutes);
 // app.use("/api", stockistRoutes);
 // app.use('/api', billRoutes);
 app.use('/api', DrugmasterRoutes);
-app.use('/', formDataRoutes);
+app.use('/api', formDataRoutes);
 app.use('/api', employeeRoutes);
 // stockist 
 const stockistRoutes = require('./routes/StockistRoutes');
