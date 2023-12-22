@@ -44,6 +44,13 @@ const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 // const patientbill = require('./routes/PatientBillRoutes');
 const formRoutes = require('./routes/formRoutes');
+
+
+const taxRoutes = require('./routes/taxRoutes');
+
+
+
+app.use('/api', taxRoutes);
 // app.use('/api',patientbill);
 app.use('/',formRoutes);
 app.use(express.json());
