@@ -1,7 +1,9 @@
 // controllers/PatientBillController.js
 const PatientBill = require('../models/PatientBillModel');
 const moment = require('moment');
+
 const patientBillController = {
+  
   submitPatientBill: async (req, res) => {
     try {
       const {
@@ -32,9 +34,6 @@ const patientBillController = {
   },
 
 
-
-  
-  
   getAllItems: async (req, res) => {
     try {
       const allItems = await PatientBill.find({}, 'items');
