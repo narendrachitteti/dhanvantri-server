@@ -9,5 +9,4 @@ router.put('/edit-item/:id', formDataController.editItem);
 router.delete('/delete-item/:id', formDataController.deleteItem);
 router.get('/api/distinctCompanies', formDataController.getDistinctCompanies);
 router.get('/api/products', formDataController.getProducts);
-
 module.exports = router;

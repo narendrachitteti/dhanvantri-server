@@ -37,3 +37,33 @@ exports.deleteDocument = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.getDistinct = async (req, res) => {
+    try {
+      const distinctCompanies = await Fordata.distinct('Company');
+      const distinctHsn = await Fordata.distinct('HmsCode'); 
+      
+      const distinctValues = {
+        companies: distinctCompanies,
+        hsn: distinctHsn,
+      };
+  
+      res.json(distinctValues);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+
+    res.json(updatedData);
+  } catch (error) {
+    console.error('Error updating data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = {
+  createFormData,
+  getFormData,
+  updateFormData,
+  getProducts,
+};
