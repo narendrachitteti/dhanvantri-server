@@ -1,6 +1,6 @@
 // routes/PatientBillRoutes.js
 const express = require('express');
-const patientBillController = require('../controllers/PatientBillController');
+const patientBillController = require('../Controllers/PatientBillController');
 
 const router = express.Router();
 
