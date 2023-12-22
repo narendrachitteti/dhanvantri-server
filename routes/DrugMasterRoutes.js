@@ -7,5 +7,6 @@ router.get('/Drug-composition/', DrugCompoController.getAllDrugCompos);
 router.post('/Drug-composition/', DrugCompoController.createDrugCompo);
 router.put('/Drug-composition/:id', DrugCompoController.updateDrugCompo);
 router.delete('/Drug-composition/:id', DrugCompoController.deleteDrugCompo);
+router.get('/distinctdrug', DrugCompoController.getDistinct);
 
 module.exports = router;

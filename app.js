@@ -42,7 +42,19 @@ const invoicestockRoutes = require('./routes/invoicestockRoutes');
 const DrugmasterRoutes = require('./routes/DrugMasterRoutes');
 const formDataRoutes = require('./routes/formDataRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
+// const patientbill = require('./routes/PatientBillRoutes');
+const formRoutes = require('./routes/formRoutes');
 
+const registrationRoutes = require('./routes/registrationRoutes');
+
+
+const taxRoutes = require('./routes/taxRoutes');
+
+
+
+app.use('/api', taxRoutes);
+// app.use('/api',patientbill);
+app.use('/',formRoutes);
 app.use(express.json());
 
 //Login
@@ -59,15 +71,23 @@ app.use('/api', invoicestockRoutes);
 // app.use("/api", stockistRoutes);
 // app.use('/api', billRoutes);
 app.use('/api', DrugmasterRoutes);
-app.use('/', formDataRoutes);
+app.use('/api', formDataRoutes);
 app.use('/api', employeeRoutes);
 // stockist 
 const stockistRoutes = require('./routes/StockistRoutes');
 app.use('/api', stockistRoutes);
 
+app.use('/api', registrationRoutes);
+
 //patientBillRoutes 
 const patientBillRoutes = require('./routes/PatientBillRoutes');
 app.use('/api', patientBillRoutes);
+
+const pharmacystockRoutes = require('./routes/PharmacyStockRoutes');
+app.use('/api', pharmacystockRoutes);
+
+const inventoryroutes = require('./routes/inventoryRoutes');
+app.use('/api', inventoryroutes);
 
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable

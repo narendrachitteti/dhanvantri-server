@@ -11,6 +11,56 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
   },
+  getProducts: async (req, res) => { 
+    try {
+      const products = await FormData.find({}, 'product'); // Assuming 'product' is the field name in your FormData model
+      res.json(products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  getSalesRates: async (req, res) => {
+    try {
+      const salesRates = await FormData.find({}, 'salesRate');
+      res.json(salesRates);
+    } catch (error) {
+      console.error('Error fetching salesRates:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+
+
+  getPurchaseRates: async (req, res) => {
+    try {
+      const purchaseRates = await FormData.find({}, 'purchaseRate');
+      res.json(purchaseRates);
+    } catch (error) {
+      console.error('Error fetching purchaseRate:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+
+  getUnitPerBox: async (req, res) => {
+    try {
+      const unitPerBoxs = await FormData.find({}, 'unitPerBox');
+      res.json(unitPerBoxs);
+    } catch (error) {
+      console.error('Error fetching unitPerBox:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+
+   getHsn: async (req, res) => {
+    try {
+      const hsnData = await FormData.find({}, 'hsn');
+      const hsnCodes = hsnData.map((data) => data.hsn);
+      res.json(hsnCodes);
+    } catch (error) {
+      console.error('Error fetching HSN codes:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
 
   getAllData: async (req, res) => {
     try {

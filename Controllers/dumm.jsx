@@ -12,15 +12,7 @@ const addInvoice = async (req, res) => {
     res.status(500).json({ error: "Failed to add invoice" });
   }
 };
-const getInvoices = async (req, res) => {
-  try {
-    const invoices = await CombinedInvoice.find();
-    res.status(200).json(invoices);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to fetch invoices" });
-  }
-};
+
 const getMedicine = async (req, res) => {
   try {
     // Logic to fetch all medicines from the database with Medicine, strips, and freestrips
@@ -70,7 +62,7 @@ const getMedicineDetails = async (req, res) => {
     res.status(200).json({ HSNcode, price, Manufacturer, Gst });
   } catch (error) {
     console.error(error);
-    res.status(500).json(`{ error: Failed to fetch medicine details: ${error.message} }`);
+    res.status(500).json({ error: Failed to fetch medicine details: ${error.message} });
   }
 };
 
@@ -107,7 +99,7 @@ const getBatchDetails = async (req, res) => {
     res.status(200).json({ BatchExpiry });
   } catch (error) {
     console.error(error);
-    res.status(500).json(`{ error: Failed to fetch batch details: ${error.message} }`);
+    res.status(500).json({ error: Failed to fetch batch details: ${error.message} });
   }
 };
 
@@ -128,7 +120,7 @@ const getMedicineDetailss = async (req, res) => {
     res.status(200).json({ price, Manufacturer, Batch, BatchExpiry, Gst });
   } catch (error) {
     console.error(error);
-    res.status(500).json(`{ error: Failed to fetch medicine details: ${error.message} }`);
+    res.status(500).json({ error: Failed to fetch medicine details: ${error.message} });
   }
 };
 
@@ -136,7 +128,6 @@ module.exports = {
   addInvoice,
   getMedicineDetails,
   getMedicineOnly,
-  getInvoices,
   getMedicineDetailss,
   getBatchNumbers,
   getBatchDetails,
