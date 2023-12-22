@@ -5,4 +5,7 @@ const registrationController = require('../Controllers/registrationController');
 
 router.post('/register', registrationController.registerUser);
 
+// Define the route for fetching user data
+router.get('/user', registrationController.getUser);
+
 module.exports = router;

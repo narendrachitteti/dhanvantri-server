@@ -20,3 +20,27 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error.' });
   }
 };
+
+
+exports.getUser = async (req, res) => {
+  try {
+    const { email, password } = req.query;
+
+    // Validate data (add more validation as needed)
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Please provide both email and password.' });
+    }
+
+    // Fetch data from MongoDB based on email and password
+    const user = await Registration.findOne({ email, password });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+};
