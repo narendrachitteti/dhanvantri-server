@@ -1,4 +1,4 @@
-const { PharmacystockData } = require("../models/pharmacystockModel");
+const { PharmacystockData } = require("../models/PharmacyStockModel");
 
 const updatePropertyById = async (req, res) => {
   const id = req.params.id;
