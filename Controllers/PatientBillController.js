@@ -11,6 +11,7 @@ const patientBillController = {
         items,
         subtotalWithGST,
         subtotalWithoutGST,
+        sign
       } = req.body;
 
       const newPatientBill = new PatientBill({
@@ -20,6 +21,7 @@ const patientBillController = {
         items,
         subtotalWithGST,
         subtotalWithoutGST,
+        sign
       });
 
       await newPatientBill.save();
