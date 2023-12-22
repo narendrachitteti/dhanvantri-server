@@ -8,6 +8,7 @@ const patientBillSchema = new mongoose.Schema({
   items: Array,
   subtotalWithGST: Number,
   subtotalWithoutGST: Number,
+  sign:String,
 });
 
 const PatientBill = mongoose.model('PatientBill', patientBillSchema);
