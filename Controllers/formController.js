@@ -69,15 +69,11 @@ exports.getDistinct = async (req, res) => {
     }
 
     res.json(updatedData);
-  } catch (error) {
-    console.error('Error updating data:', error);
-    res.status(500).send('Internal Server Error');
-  }
+  } 
 }
 
 module.exports = {
   createFormData,
   getFormData,
   updateFormData,
-  getProducts,
 };

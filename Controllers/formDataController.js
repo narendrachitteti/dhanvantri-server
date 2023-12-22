@@ -11,6 +11,7 @@ const formDataController = {
       res.status(500).json({ message: 'Internal server error' });
     }
   },
+  
   getProducts: async (req, res) => { 
     try {
       const products = await FormData.find({}, 'product');
