@@ -14,7 +14,7 @@
 const express = require('express');
 const formDataController = require('../Controllers/formController');
 
-const router = express.Router();
+const router = express.Router();  
 
 router.post('/api/newmodels', formDataController.createDocument);
 router.get('/api/newmodels', formDataController.readAllDocuments);

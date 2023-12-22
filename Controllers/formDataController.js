@@ -51,6 +51,16 @@ const formDataController = {
     }
   },
 
+   getHsn: async (req, res) => {
+    try {
+      const hsnData = await FormData.find({}, 'hsn');
+      const hsnCodes = hsnData.map((data) => data.hsn);
+      res.json(hsnCodes);
+    } catch (error) {
+      console.error('Error fetching HSN codes:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
 
   getAllData: async (req, res) => {
     try {

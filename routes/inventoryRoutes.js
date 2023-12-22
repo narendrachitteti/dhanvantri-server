@@ -6,21 +6,21 @@ const {
   getExpiryInventoryProperties,
   getLowInventoryProperties,
   getZeroInventoryProperties,
-} = require('../controllers/inventoryController');
+} = require('../Controllers/inventoryController');
 
 // Create Inventory Property
-router.post('/inventorydata', createInventoryProperty);
+router.post('/api/inventorydata', createInventoryProperty);
 
 // Get All Inventory Properties
-router.get('/inventorydata', getAllInventoryProperties);
+router.get('/api/inventorydata', getAllInventoryProperties);
 
 // Get Expired Inventory Properties
-router.get('/inventorydata/expiry', getExpiryInventoryProperties);
+router.get('/api/inventorydata/expiry', getExpiryInventoryProperties);
 
 // Get Low Inventory Properties
-router.get('/inventorydata/low', getLowInventoryProperties);
+router.get('/api/inventorydata/low', getLowInventoryProperties);
 
 // Get Zero Inventory Properties
-router.get('/inventorydata/zero', getZeroInventoryProperties);
+router.get('/api/inventorydata/zero', getZeroInventoryProperties);
 
 module.exports = router;
