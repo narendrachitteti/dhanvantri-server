@@ -12,4 +12,6 @@ router.get('/products', formDataController.getProducts);
 router.get('/salesRates', formDataController.getSalesRates);
 router.get('/purchaseRates', formDataController.getPurchaseRates);
 router.get('/unitPerBox', formDataController.getUnitPerBox);
+router.get('/Hsn', formDataController.getHsn);
+
 module.exports = router;
