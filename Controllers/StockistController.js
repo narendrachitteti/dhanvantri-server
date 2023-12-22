@@ -55,6 +55,17 @@ const stockistController = {
       res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
   },
+  getStockistNames: async (req, res) => {
+    try {
+      const stockistNames = await Stockist.find({}, 'name'); // Fetching only the 'name' field
+
+      console.log('Fetched stockist names:', stockistNames);
+      res.json(stockistNames);
+    } catch (error) {
+      console.error('Error fetching stockist names:', error);
+      res.status(500).json({ error: 'An error occurred while fetching stockist names' });
+    }
+  },
 };
 
 module.exports = stockistController;

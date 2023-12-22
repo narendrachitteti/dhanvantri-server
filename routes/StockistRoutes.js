@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/submit-stockist', stockistController.submitStockist);
 router.get('/get-stockists', stockistController.getStockists);
 router.put('/update-stockist/:id', stockistController.updateStockist);
-
+router.get('/get-stockist-names', stockistController.getStockistNames);
 
 module.exports = router;

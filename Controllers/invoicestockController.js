@@ -12,7 +12,15 @@ const addInvoice = async (req, res) => {
     res.status(500).json({ error: "Failed to add invoice" });
   }
 };
-
+const getInvoices = async (req, res) => {
+  try {
+    const invoices = await CombinedInvoice.find();
+    res.status(200).json(invoices);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch invoices" });
+  }
+};
 const getMedicine = async (req, res) => {
   try {
     // Logic to fetch all medicines from the database with Medicine, strips, and freestrips
@@ -128,6 +136,7 @@ module.exports = {
   addInvoice,
   getMedicineDetails,
   getMedicineOnly,
+  getInvoices,
   getMedicineDetailss,
   getBatchNumbers,
   getBatchDetails,
