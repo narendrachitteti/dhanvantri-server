@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   updatePropertyById,
   getPharmacystockData,
-} = require("../controllers/pharmacystockController");
+} = require("../Controllers/PharmacyStockController");
 
 // Update property by ID
 router.put("/pharmacystockdata/:id", updatePropertyById);

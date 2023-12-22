@@ -7,7 +7,7 @@ const {
   addInvoice,
   getMedicineDetails,
   getMedicineOnly, 
- 
+  getInvoices,
   getBatchNumbers,
   getBatchDetails,
   getMedicine,
@@ -25,6 +25,8 @@ router.get("/medicineDetails/:medicineName", getMedicineDetails);
 router.post("/addInvoice", addInvoice);
 
 router.get("/medicineDetails/:medicineName", getMedicineDetails);
+
+router.get("/getInvoices", getInvoices);
 
 
 router.get("/medicines", getMedicineOnly); 
