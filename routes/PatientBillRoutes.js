@@ -10,6 +10,7 @@ router.get('/patient-bill', patientBillController.getAllPatientBills);
 router.get('/items', patientBillController.getAllItems);
 router.get('/items-by-date', patientBillController.getItemsByDate);
 router.get('/items-for-today', patientBillController.getItemsForToday); 
+router.get('/getIn', patientBillController.getInvoices); 
 
 
 

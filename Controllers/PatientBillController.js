@@ -87,7 +87,17 @@ const patientBillController = {
       res.status(500).send('Server Error');
     }
   },
+  getInvoices: async (req, res) => {
+    try {
+      const invoices = await PatientBill.find();
+      res.status(200).json(invoices);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to fetch invoices" });
+    }
+  },
 
+  
   
 };
 
