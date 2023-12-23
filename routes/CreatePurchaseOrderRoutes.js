@@ -5,10 +5,10 @@ const {
   getCreatePurchaseOrders,
   updateOrderStatus,
   deleteOrder,
-} = require("../controllers/createPurchaseOrderController");
+} = require("../Controllers/CreatePurchaseOrderController");
 
 // Add Create Purchase Order
-router.post("/addCreatePurchaseOrder", addCreatePurchaseOrder);
+router.post("/createPurOrder", addCreatePurchaseOrder);
 
 // Get All Create Purchase Orders
 router.get("/getCreatePurchaseOrders", getCreatePurchaseOrders);

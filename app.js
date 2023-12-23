@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 
 
 //pharma
-// const createPurchaseOrderRoutes = require('./routes/createPurchaseOrderRoutes');
+const CreatePurchaseOrderRoutes = require('./routes/CreatePurchaseOrderRoutes');
 // const inventoryroutes = require('./routes/inventoryRoutes');
 const invoicestockRoutes = require('./routes/invoicestockRoutes');
 // const pharmaBillingRoutes = require('./routes/pharmacyBillingRoutes');
@@ -61,7 +61,7 @@ app.use(express.json());
 // app.use('/api', LoginRouter);
 
 //pharma
-// app.use('/api', createPurchaseOrderRoutes);
+app.use('/api', CreatePurchaseOrderRoutes);
 // app.use('/api', inventoryroutes);
 app.use('/api', invoicestockRoutes);
 // app.use('/api', pharmaBillingRoutes);
@@ -88,6 +88,8 @@ app.use('/api', pharmacystockRoutes);
 
 const inventoryroutes = require('./routes/inventoryRoutes');
 app.use('/api', inventoryroutes);
+
+
 
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
