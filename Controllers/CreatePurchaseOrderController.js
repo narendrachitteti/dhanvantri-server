@@ -35,7 +35,10 @@ const updateOrderStatus = async (req, res) => {
   try {
     const { customOrderId } = req.params;
     const { status } = req.body;
-    await CreatePurchaseOrder.updateOne({ customOrderId }, { $set: { status } });
+    await CreatePurchaseOrder.updateOne(
+      { customOrderId },
+      { $set: { status } }
+    );
     res.json({ message: "Status updated successfully" });
   } catch (error) {
     console.error("Error updating status:", error);
@@ -60,9 +63,12 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   addCreatePurchaseOrder,
   getCreatePurchaseOrders,
   updateOrderStatus,
   deleteOrder,
+  
 };
