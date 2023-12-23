@@ -1,11 +1,10 @@
 const CreatePurchaseOrder = require("../models/createPurchaseOrderModel");
 
-const generateRandomNumber = () => {
-  return Math.floor(1000000000 + Math.random() * 9000000000);
-};
+let orderIdCounter = 0; // Counter to keep track of order IDs
 
 const generateCustomOrderId = () => {
-  return `OID-${generateRandomNumber()}`;
+  orderIdCounter++;
+  return `OID-${orderIdCounter.toString().padStart(3, '0')}`;
 };
 
 const addCreatePurchaseOrder = async (req, res) => {
@@ -35,7 +34,10 @@ const updateOrderStatus = async (req, res) => {
   try {
     const { customOrderId } = req.params;
     const { status } = req.body;
-    await CreatePurchaseOrder.updateOne({ customOrderId }, { $set: { status } });
+    await CreatePurchaseOrder.updateOne(
+      { customOrderId },
+      { $set: { status } }
+    );
     res.json({ message: "Status updated successfully" });
   } catch (error) {
     console.error("Error updating status:", error);
@@ -60,9 +62,12 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   addCreatePurchaseOrder,
   getCreatePurchaseOrders,
   updateOrderStatus,
   deleteOrder,
+  
 };
