@@ -1,11 +1,10 @@
 const CreatePurchaseOrder = require("../models/createPurchaseOrderModel");
 
-const generateRandomNumber = () => {
-  return Math.floor(1000000000 + Math.random() * 9000000000);
-};
+let orderIdCounter = 0; // Counter to keep track of order IDs
 
 const generateCustomOrderId = () => {
-  return `OID-${generateRandomNumber()}`;
+  orderIdCounter++;
+  return `OID-${orderIdCounter.toString().padStart(3, '0')}`;
 };
 
 const addCreatePurchaseOrder = async (req, res) => {
