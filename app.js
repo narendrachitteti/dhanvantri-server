@@ -49,6 +49,9 @@ const registrationRoutes = require('./routes/registrationRoutes');
 
 
 const taxRoutes = require('./routes/taxRoutes');
+const creditNoteRoutes = require('./routes/CreditcardRouter');
+const debitNoteRoutes = require('./routes/debitcardRouter');
+
 
 
 
@@ -88,6 +91,8 @@ app.use('/api', pharmacystockRoutes);
 
 const inventoryroutes = require('./routes/inventoryRoutes');
 app.use('/api', inventoryroutes);
+app.use('/', creditNoteRoutes);
+app.use('/', debitNoteRoutes);
 
 
 
