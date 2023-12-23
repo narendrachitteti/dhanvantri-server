@@ -7,5 +7,5 @@ router.post('/register', registrationController.registerUser);
 
 // Define the route for fetching user data
 router.get('/user', registrationController.getUser);
-
+router.post('/login', registrationController.loginUser);
 module.exports = router;
