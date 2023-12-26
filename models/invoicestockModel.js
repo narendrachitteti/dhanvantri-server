@@ -7,7 +7,7 @@ const medicineSchema = new mongoose.Schema({
   Medicine: String,
   Manufacturer: String,
   Category: String,
-  Batch: String,
+  Batch: String,  
   BatchExpiry: String,
   Unit: String,
   strips: String,
