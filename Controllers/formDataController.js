@@ -23,6 +23,28 @@ const formDataController = {
       res.status(500).send('Internal Server Error');
     }
   },
+  getCompanyByProduct: async (req, res) => {
+    try {
+      const { product } = req.params;
+
+      if (!product) {
+        return res.status(400).json({ message: 'Invalid product name' });
+      }
+
+      const companyData = await FormData.findOne({ product }, 'company');
+
+      if (!companyData) {
+        return res.status(404).json({ message: 'Company not found for the given product' });
+      }
+
+      const company = companyData.company;
+
+      res.json({ company });
+    } catch (error) {
+      console.error('Error fetching company by product:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
   getSalesRates: async (req, res) => {
     try {
       const salesRates = await FormData.find({}, 'salesRate');

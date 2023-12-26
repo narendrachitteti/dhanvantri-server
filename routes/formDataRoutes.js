@@ -15,5 +15,7 @@ router.get('/salesRates', formDataController.getSalesRates);
 router.get('/purchaseRates', formDataController.getPurchaseRates);
 router.get('/unitPerBox', formDataController.getUnitPerBox);
 router.get('/Hsn', formDataController.getHsn);
+// Add the new route to fetch company by product
+router.get('/getCompanyByProduct/:product', formDataController.getCompanyByProduct);
 
 module.exports = router;
