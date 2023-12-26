@@ -14,7 +14,7 @@ const {
   
   
 
-} = require("../controllers/invoicestockController");
+} = require("../Controllers/invoicestockController");
 router.get('/getMedicine', getMedicine);
 router.get('/batchDetails/:batchNumber', getBatchDetails);
 router.get('/batchNumbers', getBatchNumbers);
