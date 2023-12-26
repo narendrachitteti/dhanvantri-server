@@ -1,4 +1,4 @@
-const CreatePurchaseOrder = require("../models/createPurchaseOrderModel");
+const CreatePurchaseOrder = require("../models/CreatePurchaseOrderModel");
 
 let orderIdCounter = 0; // Counter to keep track of order IDs
 
