@@ -2,15 +2,15 @@ const Registration = require('../models/registrationModel');
 
 exports.registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, name, staffid} = req.body;
 
     // Validate data (add more validation as needed)
-    if (!username || !email || !password ) {
+    if (!username || !email || !password || !name || !staffid  ) {
       return res.status(400).json({ message: 'Please provide all required fields.' });
     }
 
     // Save data to MongoDB
-    const newRegistration = new Registration({ username, email, password });
+    const newRegistration = new Registration({ username, email, password, name, staffid });
     await newRegistration.save();
 
     res.status(201).json({ message: 'Registration successful.', user: newRegistration });
