@@ -154,8 +154,19 @@ const formDataController = {
 },
 
 
+getCompanies: async (req, res) => {
+  try {
+    const companies = await FormData.distinct('company');
+    res.json(companies);
+  } catch (error) {
+    console.error('Error fetching companies:', error);
+    res.status(500).send('Internal Server Error');
+  }
+},
+
 
   
 };
+
 
 module.exports = formDataController;

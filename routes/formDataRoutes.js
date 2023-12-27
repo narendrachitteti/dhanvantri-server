@@ -18,4 +18,5 @@ router.get('/Hsn', formDataController.getHsn);
 // Add the new route to fetch company by product
 router.get('/getCompanyByProduct/:product', formDataController.getCompanyByProduct);
 
+router.get('/getCompanies', formDataController.getCompanies);
 module.exports = router;

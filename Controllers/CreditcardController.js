@@ -11,16 +11,17 @@ const getAllCreditNotes = async (req, res) => {
 };
 
 const createCreditNote = async (req, res) => {
-  const { CrNo, CrDate, customers, Amount, ManualNo, Narration } = req.body;
+  const { CrNo, CrDate, Company, Amount, ManualNo, Narration, Condition } = req.body;
 
   try {
     const newCreditNote = await CreditNote.create({
       CrNo,
-      CrDate,
-      customers,
+      CrDate, // Format date as 'YYYY-MM-DD'
+      Company,
       Amount,
       ManualNo,
       Narration,
+      Condition,
     });
 
     res.status(201).json(newCreditNote);

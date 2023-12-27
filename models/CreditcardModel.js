@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const creditNoteSchema = new mongoose.Schema({
   CrNo: String,
   CrDate: Date,
-  customers: String,
+  Company: String,
   Amount: String,
   ManualNo: String,
   Narration: String,
+  Condition:String,
 });
 
 const CreditNote = mongoose.model('CreditNote', creditNoteSchema);
