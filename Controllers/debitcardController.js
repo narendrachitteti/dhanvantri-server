@@ -11,13 +11,13 @@ const getAllDebitNotes = async (req, res) => {
 };
 
 const createDebitNote = async (req, res) => {
-  const { DrNo, DrDate, company, Amount, ManualNo, Narration ,Condition} = req.body;
+  const { DrNo, DrDate, Company, Amount, ManualNo, Narration ,Condition} = req.body;
 
   try {
     const newDebitNote = await DebitNote.create({
       DrNo,
       DrDate,
-      company,
+      Company,
       Amount,
       ManualNo,
       Narration,
