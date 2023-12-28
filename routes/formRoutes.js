@@ -12,7 +12,7 @@
 // module.exports = router;
 
 const express = require('express');
-const formDataController = require('../Controllers/formController');
+const formDataController = require('../controllers/formController');
 
 const router = express.Router();  
 
