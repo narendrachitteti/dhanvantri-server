@@ -91,8 +91,8 @@ app.use('/api', pharmacystockRoutes);
 
 const inventoryroutes = require('./routes/inventoryRoutes');
 app.use('/api', inventoryroutes);
-app.use('/', creditNoteRoutes);
-app.use('/', debitNoteRoutes);
+app.use('/api', creditNoteRoutes);
+app.use('/api', debitNoteRoutes);
 
 
 

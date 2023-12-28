@@ -11,23 +11,30 @@ const getAllDebitNotes = async (req, res) => {
 };
 
 const createDebitNote = async (req, res) => {
-  const { DrNo, DrDate, Company, Amount, ManualNo, Narration ,Condition} = req.body;
+  const { DrNo, DrDate, Company, Amount, ManualNo, Narration, Condition } = req.body;
 
-  try {
-    const newDebitNote = await DebitNote.create({
-      DrNo,
-      DrDate,
-      Company,
-      Amount,
-      ManualNo,
-      Narration,
-      Condition,
-    });
+// Extracting string values from Company and Condition objects
+const companyValue = Company.value || '';
+const conditionValue = Condition.value || '';
 
-    res.status(201).json(newDebitNote);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+try {
+  const newDebitNote = await DebitNote.create({
+    DrNo,
+    DrDate,
+    Company: companyValue,
+    Amount,
+    ManualNo,
+    Narration,
+    Condition: conditionValue,
+  });
+
+  res.status(201).json(newDebitNote);
+} catch (error) {
+  console.error('Error creating debit note:', error);
+  res.status(500).json({ error: 'Internal Server Error' });
+}
 };
+
+
 
 module.exports = { getAllDebitNotes, createDebitNote };
