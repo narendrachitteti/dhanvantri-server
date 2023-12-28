@@ -164,13 +164,32 @@ getCompanies: async (req, res) => {
   }
 },
 
-getfindProducts: async (req, res) => { 
+getProductDetails: async (req, res) => {
+  // Extract the product name from the request parameters
+  const { productName } = req.params;
+
   try {
-    const products = await FormData.find({}, 'product'); // Assuming 'product' is the field name in your FormData model
-    res.json(products);
+    // Assuming you have a MongoDB model for products named FormData
+    // Fetch the product details from the database
+    const productDetails = await FormData.findOne({ productName });
+
+    // If the product details are not found, return a 404 response
+    if (!productDetails) {
+      return res.status(404).json({ error: "Product details not found" });
+    }
+
+    // Find the selected product within the medicines array
+    const selectedProduct = productDetails.medicines.find(product => product.product === productName);
+
+    // Extract relevant details from the selected product
+    const { taxCode, company, drugComposition } = selectedProduct;
+
+    // Respond with the extracted product details
+    res.status(200).json({ taxCode, company, drugComposition });
   } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).send('Internal Server Error');
+    // Handle any errors that may occur during the database query
+    console.error(error);
+    res.status(500).json({ error: `Failed to fetch product details: ${error.message}` });
   }
 },
 
