@@ -164,20 +164,13 @@ getCompanies: async (req, res) => {
   }
 },
 
- getProductDetails: async (req, res) => {
-  const { productName } = req.params;
+getfindProducts: async (req, res) => { 
   try {
-    // Assuming you have a MongoDB model for products named Product
-    const productDetails = await FormData.findOne({ productName });
-    if (!productDetails) {
-      return res.status(404).json({ error: "Product details not found" });
-    }
-    const selectedProduct = productDetails.medicines.find(product => product.product === productName);
-    const { taxCode, company, drugComposition } = selectedProduct;
-    res.status(200).json({ taxCode, company, drugComposition });
+    const products = await FormData.find({}, 'product'); // Assuming 'product' is the field name in your FormData model
+    res.json(products);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: `Failed to fetch product details: ${error.message}` });
+    console.error('Error fetching products:', error);
+    res.status(500).send('Internal Server Error');
   }
 },
 
