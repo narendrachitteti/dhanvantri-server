@@ -89,21 +89,16 @@ const getBatchNumbers = async (req, res) => {
 
 const getBatchDetails = async (req, res) => {
   const { batchNumber } = req.params;
-
   try {
     const medicineDetails = await CombinedInvoice.findOne({ "medicines.Batch": batchNumber });
-    
     if (!medicineDetails) {
       return res.status(404).json({ error: "Medicine details not found" });
     }
-
     const selectedMedicine = medicineDetails.medicines.find(medicine => medicine.Batch === batchNumber);
     if (!selectedMedicine) {
       return res.status(404).json({ error: "Medicine details not found for the specified batch" });
     }
-
     const { BatchExpiry } = selectedMedicine;
-
     res.status(200).json({ BatchExpiry });
   } catch (error) {
     console.error(error);

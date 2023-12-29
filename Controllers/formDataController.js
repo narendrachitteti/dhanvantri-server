@@ -16,13 +16,32 @@ const formDataController = {
   },
   getProducts: async (req, res) => { 
     try {
-      const products = await FormData.find({}, 'product'); // Assuming 'product' is the field name in your FormData model
+      const { taxCode, category } = req.query; 
+      const query = {};
+      if (taxCode) {
+        query.taxCode = taxCode;
+      }
+      if (category) {
+        query.category = category;
+      }
+      const products = await FormData.find({}); // Assuming 'product' is the field name in your FormData model
       res.json(products);
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).send('Internal Server Error');
     }
-  },
+},
+
+getAllProductsid: async (req, res) => {
+  try {
+    const items = await FormData.find({}, 'product taxCode category group purchaseRate');
+    res.status(200).json(items);
+  } catch (error) {
+    console.error('Failed to fetch data', error);
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+},
+
   getCompanyByProduct: async (req, res) => {
     try {
       const { product } = req.params;
@@ -30,15 +49,11 @@ const formDataController = {
       if (!product) {
         return res.status(400).json({ message: 'Invalid product name' });
       }
-
       const companyData = await FormData.findOne({ product }, 'company');
-
       if (!companyData) {
         return res.status(404).json({ message: 'Company not found for the given product' });
       }
-
       const company = companyData.company;
-
       res.json({ company });
     } catch (error) {
       console.error('Error fetching company by product:', error);
@@ -165,33 +180,24 @@ getCompanies: async (req, res) => {
 },
 
 getProductDetails: async (req, res) => {
-  // Extract the product name from the request parameters
   const { productName } = req.params;
+  console.log('Received request for product:', productName);
 
   try {
-    // Assuming you have a MongoDB model for products named FormData
-    // Fetch the product details from the database
-    const productDetails = await FormData.findOne({ productName });
+    const productDetails = await FormData.findOne({ product: productName });
 
-    // If the product details are not found, return a 404 response
     if (!productDetails) {
+      console.error(`Product details not found for: ${productName}`);
       return res.status(404).json({ error: "Product details not found" });
     }
 
-    // Find the selected product within the medicines array
-    const selectedProduct = productDetails.medicines.find(product => product.product === productName);
-
-    // Extract relevant details from the selected product
-    const { taxCode, company, drugComposition } = selectedProduct;
-
-    // Respond with the extracted product details
-    res.status(200).json({ taxCode, company, drugComposition });
+    // ... (rest of your code)
   } catch (error) {
-    // Handle any errors that may occur during the database query
-    console.error(error);
+    console.error(`Error fetching product details: ${error.message}`);
     res.status(500).json({ error: `Failed to fetch product details: ${error.message}` });
   }
 },
+
 
 };
 

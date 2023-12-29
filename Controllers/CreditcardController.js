@@ -11,12 +11,12 @@ const generateCrNo = async () => {
     if (!isNaN(lastNumber)) {
       // Increment and pad with leading zeros
       const nextNumber = (lastNumber + 1).toString().padStart(3, '0');
-      return `CN-DP-${nextNumber}`;
+      return `CNDP${nextNumber}`;
     }
   }
 
   // If no existing credit notes or an issue with parsing, start with 001
-  return `CN-DP-001`;
+  return `CNDP001`;
 };
 
 
