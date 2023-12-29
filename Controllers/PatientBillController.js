@@ -96,7 +96,36 @@ const patientBillController = {
       res.status(500).json({ error: "Failed to fetch invoices" });
     }
   },
+  updatePatient: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const {
+        patientName,
+        mobilenumber,
+        date,
+        items,
+        // Other fields...
+      } = req.body;
 
+      // Assuming you have a PatientBill model
+      const updatedPatient = await PatientBill.findByIdAndUpdate(
+        id,
+        {
+          patientName,
+          mobilenumber,
+          date,
+          items,
+          // Other fields...
+        },
+        { new: true } // To get the updated document
+      );
+
+      res.status(200).json(updatedPatient);
+    } catch (error) {
+      console.error('Error updating patient:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  },
   
   
 };
