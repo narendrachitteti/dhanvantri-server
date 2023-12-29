@@ -23,5 +23,4 @@ const formDataSchema = new mongoose.Schema({
 });
 
 const FormData = mongoose.model('FormData', formDataSchema);
-
 module.exports = FormData;
