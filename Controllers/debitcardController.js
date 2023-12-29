@@ -11,12 +11,12 @@ const generateDrNo = async () => {
     if (!isNaN(lastNumber)) {
       // Increment and pad with leading zeros
       const nextNumber = (lastNumber + 1).toString().padStart(3, "0");
-      return `DN-DP-${nextNumber}`;
+      return `DNDP${nextNumber}`;
     }
   }
 
   // If no existing credit notes or an issue with parsing, start with 001
-  return `DN-DP-001`;
+  return `DNDP001`;
 };
 
 const getAllDebitNotes = async (req, res) => {
