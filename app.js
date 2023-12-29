@@ -54,6 +54,7 @@ const debitNoteRoutes = require('./routes/debitcardRouter');
 
 
 
+const itemRoutes = require("./routes/itemDecRoutes");
 
 app.use('/api', taxRoutes);
 // app.use('/api',patientbill);
@@ -95,6 +96,8 @@ app.use('/api', creditNoteRoutes);
 app.use('/api', debitNoteRoutes);
 
 
+
+app.use("/api", itemRoutes);
 
 
 const PORT = process.env.PORT || 5000 // Use the PORT environment variable
