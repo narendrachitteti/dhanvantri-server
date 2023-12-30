@@ -5,15 +5,15 @@ const itemController = require("../Controllers/itemDecController");
 const router = express.Router();
 
 // POST endpoint to add a new item
-router.post("/items", itemController.addItem);
+router.post("/itemdec", itemController.addItem);
 
 // PUT endpoint to update an existing item
-router.put("/items/:id", itemController.updateItem);
+router.put("/itemdec/:id", itemController.updateItem);
 
 // DELETE endpoint to delete an item
-router.delete("/items/:id", itemController.deleteItem);
+router.delete("/itemdec/:id", itemController.deleteItem);
 
 // GET endpoint to fetch all items
-router.get("/items", itemController.getAllItems);
+router.get("/itemdec", itemController.getAllItems);
 
 module.exports = router;
