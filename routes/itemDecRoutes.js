@@ -10,7 +10,7 @@ router.post("/itemdec", itemController.addItem);
 // PUT endpoint to update an existing item
 router.put("/itemdec/:id", itemController.updateItem);
 
-// DELETE endpoint to delete an item
+// DELETE endpoint to delete an itemhiii
 router.delete("/itemdec/:id", itemController.deleteItem);
 
 // GET endpoint to fetch all items
