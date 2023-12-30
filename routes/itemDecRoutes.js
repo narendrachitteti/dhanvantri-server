@@ -16,4 +16,7 @@ router.delete("/itemdec/:id", itemController.deleteItem);
 // GET endpoint to fetch all items
 router.get("/itemdec", itemController.getAllItems);
 
+
+router.get('/itemdec/details', itemController.getProductDetails);
+
 module.exports = router;
