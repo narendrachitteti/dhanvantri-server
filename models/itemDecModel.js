@@ -14,6 +14,7 @@ const itemSchema = new mongoose.Schema({
   hsnCode: String,
   narration: String,
   drugComposition: String,
+  expiryDate:String,
 });
 
 const Item = mongoose.model("Item", itemSchema);
