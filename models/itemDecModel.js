@@ -15,7 +15,6 @@ const itemSchema = new mongoose.Schema({
   narration: String,
   drugComposition: String,
 });
-
 const Item = mongoose.model("Item", itemSchema);
 
 module.exports = Item;
