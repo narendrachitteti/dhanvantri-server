@@ -6,7 +6,7 @@ const generateDrNo = async () => {
 
   if (latestDebitNote) {
     const lastDrNo = latestDebitNote.DrNo;
-    const lastNumber = parseInt(lastDrNo.split("-")[2], 10); // Updated index to 2
+    const lastNumber = parseInt(lastDrNo.substring(4), 10); // Updated index to 2
 
     if (!isNaN(lastNumber)) {
       // Increment and pad with leading zeros
