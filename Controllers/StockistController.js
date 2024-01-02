@@ -40,7 +40,7 @@ const stockistController = {
   updateStockist: async (req, res) => {
     try {
       const { id } = req.params;
-      const updatedData = req.body;
+      const updatedData = req.body;  
 
       const updatedStockist = await Stockist.findByIdAndUpdate(id, updatedData, { new: true });
 

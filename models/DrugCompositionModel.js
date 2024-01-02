@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const DrugCompoSchema = new mongoose.Schema({
-    DrugCompoId: Number,
+    DrugCompoId: String,
     testName: String,
 });
 

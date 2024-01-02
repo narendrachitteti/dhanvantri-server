@@ -16,7 +16,6 @@ const itemSchema = new mongoose.Schema({
   drugComposition: String,
   expiryDate:String,
 });
-
 const Item = mongoose.model("Item", itemSchema);
 
 module.exports = Item;
