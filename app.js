@@ -46,6 +46,7 @@ const employeeRoutes = require('./routes/employeeRoutes');
 const formRoutes = require('./routes/formRoutes');
 
 const registrationRoutes = require('./routes/registrationRoutes');
+const AccountRoutes = require('./routes/AccountRouter');
 
 
 const taxRoutes = require('./routes/taxRoutes');
@@ -82,7 +83,7 @@ const stockistRoutes = require('./routes/StockistRoutes');
 app.use('/api', stockistRoutes);
 
 app.use('/api', registrationRoutes);
-
+app.use('/api', AccountRoutes);
 //patientBillRoutes 
 const patientBillRoutes = require('./routes/PatientBillRoutes');
 app.use('/api', patientBillRoutes);
