@@ -6,8 +6,8 @@ const generateCrNo = async () => {
 
   if (latestCreditNote) {
     const lastCrNo = latestCreditNote.CrNo;
-    const lastNumber = parseInt(lastCrNo.split('-')[2], 10); // Updated index to 2
-    
+    const lastNumber = parseInt(lastCrNo.substring(4), 10); // Assuming the numeric part always starts from index 4
+
     if (!isNaN(lastNumber)) {
       // Increment and pad with leading zeros
       const nextNumber = (lastNumber + 1).toString().padStart(3, '0');
@@ -18,6 +18,7 @@ const generateCrNo = async () => {
   // If no existing credit notes or an issue with parsing, start with 001
   return `CNDP001`;
 };
+
 
 
 

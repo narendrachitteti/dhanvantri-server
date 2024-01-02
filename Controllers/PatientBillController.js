@@ -9,6 +9,7 @@ const patientBillController = {
       const {
         patientName,
         mobilenumber,
+        doctorName,
         date,
         items,
         subtotalWithGST,
@@ -18,6 +19,7 @@ const patientBillController = {
       const newPatientBill = new PatientBill({
         patientName,
         mobilenumber,
+        doctorName,
         date,
         items,
         subtotalWithGST,
