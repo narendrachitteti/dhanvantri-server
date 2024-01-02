@@ -47,6 +47,21 @@ const itemController = {
       res.status(500).json({ success: false, message: "Server error" });
     }
   },
+
+  getProductDetails: async (req, res) => {
+    try {
+      const productName = req.query.productName;
+      const productDetails = await Item.findOne({ product: productName });
+      res.json(productDetails);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Server error' });
+    }
+  },
+
+
+
 };
+  
 
 module.exports = itemController;
