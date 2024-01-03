@@ -5,7 +5,7 @@ const stockistSchema = new mongoose.Schema({
   name: String,
   gstNumber: String,
   email: String,
-  phoneNumber: String,
+  phoneNumber: String,  
   addedDate: String,
   uniqueID: String,
 });

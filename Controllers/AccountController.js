@@ -2,20 +2,20 @@
 const Account = require('../models/AccountModel');
 
 const AccountController = {
-  submitAccount: async (req, res) => {
+submitAccount: async (req, res) => {
     try {
       const postData = req.body; 
       
       // Generate a 4-digit unique ID in serial format like A-ID001
       const count = await Account.countDocuments();
-      const uniqueID = `A-ID${(count + 1).toString().padStart(3, '0')}`;
+      const uniqueID = `A-CD${(count + 1).toString().padStart(3, '0')}`;
   
       const newAccount = new Account({
         name: postData.name,
         AccountNumber: postData.AccountNumber,
         ifcscode: postData.ifcscode,
         phoneNumber: postData.phoneNumber,
-        uniqueID: uniqueID, // Use the generated uniqueID here
+        uniqueID:postData.uniqueID, // Use the generated uniqueID here
       });
   
       // Save the new account to the database
