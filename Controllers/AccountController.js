@@ -2,6 +2,33 @@
 const Account = require('../models/AccountModel');
 
 
+// const AccountController = {
+  // submitAccount: async (req, res) => {
+  //   try {
+  //     const postData = req.body; 
+      
+  //     // Generate a 4-digit unique ID in serial format like A-ID001
+  //     const count = await Account.countDocuments();
+  //     const uniqueID = `A-ID${(count + 1).toString().padStart(3, '0')}`;
+  
+  //     const newAccount = new Account({
+  //       name: postData.name,
+  //       AccountNumber: postData.AccountNumber,
+  //       ifcscode: postData.ifcscode,
+  //       phoneNumber: postData.phoneNumber,
+  //       uniqueID:postData.uniqueID, // Use the generated uniqueID here
+  //     });
+  
+  //     // Save the new account to the database
+  //     const savedAccount = await newAccount.save();
+  
+  //     res.status(201).json({ message: 'Account submitted successfully!', account: savedAccount });
+  //   } catch (error) {
+  //     res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  //   }
+  // },
+  // // AccountController.js
+
 const AccountController = {
   submitAccount: async (req, res) => {
     try {
@@ -16,7 +43,7 @@ const AccountController = {
         AccountNumber: postData.AccountNumber,
         ifcscode: postData.ifcscode,
         phoneNumber: postData.phoneNumber,
-        uniqueID:postData.uniqueID, // Use the generated uniqueID here
+        uniqueID: uniqueID, // Use the generated uniqueID here
       });
   
       // Save the new account to the database
