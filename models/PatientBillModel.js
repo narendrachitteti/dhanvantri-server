@@ -15,3 +15,4 @@ const patientBillSchema = new mongoose.Schema({
 const PatientBill = mongoose.model('PatientBill', patientBillSchema);
 
 module.exports = PatientBill;
+
