@@ -6,7 +6,7 @@ const AccountSchema = new mongoose.Schema({
   AccountNumber: String,
   ifcscode: String,
   phoneNumber: String,
-  AccountID: String,
+  uniqueID: String,
 });
 
 const Account = mongoose.model('Account', AccountSchema);

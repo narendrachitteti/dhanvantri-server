@@ -16,7 +16,7 @@ const AccountController = {
         AccountNumber: postData.AccountNumber,
         ifcscode: postData.ifcscode,
         phoneNumber: postData.phoneNumber,
-        uniqueID: uniqueID, // Use the generated uniqueID here
+        uniqueID:postData.uniqueID, // Use the generated uniqueID here
       });
   
       // Save the new account to the database
