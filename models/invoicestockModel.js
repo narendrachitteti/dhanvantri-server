@@ -9,7 +9,7 @@ const medicineSchema = new mongoose.Schema({
   Category: String,
   Batch: String,  
   BatchExpiry: String,
-  Unit: String,
+  // Unit: String,
   strips: String,
   Freestrips: String,
   Gst: String,
@@ -22,6 +22,10 @@ const medicineSchema = new mongoose.Schema({
   BookNo: String,
   NetPrice: String,
   Quantity: String,
+  Capsules:String ,
+  capsulePrice:String,
+  totalDiscount:String,
+  calculateTotalAmounts:String,
 });
 
 const combinedSchema = new mongoose.Schema({
