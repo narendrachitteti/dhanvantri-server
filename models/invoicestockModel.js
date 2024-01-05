@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const medicineSchema = new mongoose.Schema({
   MedId: String,
   Medicine: String,
-  Manufacturer: String,
+  manufacturer: String,
   schedule: String,
   batchno: String,  
   expiryDate: String,
@@ -34,6 +34,7 @@ const combinedSchema = new mongoose.Schema({
   invoiceNumber: String,
   stockName: String,
   date: String,
+  supplieddate :String,
   medicines: [medicineSchema],
   Total: String,
   Discount: String,
