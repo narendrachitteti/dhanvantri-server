@@ -1,3 +1,4 @@
+
 // invoicestockModel
 
 const mongoose = require("mongoose");
@@ -6,9 +7,10 @@ const medicineSchema = new mongoose.Schema({
   MedId: String,
   Medicine: String,
   Manufacturer: String,
-  Category: String,
-  Batch: String,  
-  BatchExpiry: String,
+  schedule: String,
+  batchno: String,  
+  expiryDate: String,
+  TotalStrips:String,
   // Unit: String,
   strips: String,
   Freestrips: String,
