@@ -26,6 +26,7 @@ const medicineSchema = new mongoose.Schema({
   capsulePrice:String,
   totalDiscount:String,
   calculateTotalAmounts:String,
+  totalcapsules:String,
 });
 
 const combinedSchema = new mongoose.Schema({
@@ -48,6 +49,7 @@ const combinedSchema = new mongoose.Schema({
   ReturnAmount: String,
   PayStatus: String,
   ReturnStatus: String,
+
 });
 
 const CombinedInvoice = mongoose.model("CombinedInvoice", combinedSchema);
