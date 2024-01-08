@@ -2,15 +2,15 @@ const Registration = require('../models/registrationModel');
 
 exports.registerUser = async (req, res) => {
   try {
-    const { username, email, password, name, staffid} = req.body;
+    const { userid, email, password} = req.body;
 
     // Validate data (add more validation as needed)
-    if (!username || !email || !password || !name || !staffid  ) {
+    if (!userid || !email || !password  ) {
       return res.status(400).json({ message: 'Please provide all required fields.' });
     }
 
     // Save data to MongoDB
-    const newRegistration = new Registration({ username, email, password, name, staffid });
+    const newRegistration = new Registration({ userid, email, password });
     await newRegistration.save();
 
     res.status(201).json({ message: 'Registration successful.', user: newRegistration });
@@ -21,11 +21,11 @@ exports.registerUser = async (req, res) => {
 };
 exports.loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { userid, password } = req.body;
 
     // Validate data (add more validation as needed)
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Please provide both email and password.' });
+    if (!userid || !password) {
+      return res.status(400).json({ message: 'Please provide both userid and password.' });
     }
 
     // Fetch data from MongoDB based on email and password
@@ -43,15 +43,15 @@ exports.loginUser = async (req, res) => {
 };
 exports.getUser = async (req, res) => {
   try {
-    const { email, password } = req.query;
+    const { userid, password } = req.query;
 
     // Validate data (add more validation as needed)
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Please provide both email and password.' });
+    if (!userid || !password) {
+      return res.status(400).json({ message: 'Please provide both userid and password.' });
     }
 
     // Fetch data from MongoDB based on email and password
-    const user = await Registration.findOne({ email, password });
+    const user = await Registration.findOne({ userid, password });
 
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
