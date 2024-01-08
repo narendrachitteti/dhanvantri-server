@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
 
     // Fetch data from MongoDB based on email and password
     const user = await Registration.findOne({ email, password });
-
+    
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
