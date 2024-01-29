@@ -19,6 +19,7 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error.' });
   }
 };
+
 exports.loginUser = async (req, res) => {
   try {
     const { userid, password } = req.body;
